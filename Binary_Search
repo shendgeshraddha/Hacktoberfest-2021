@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+
+void bubbleSort(std::vector<int>& arr) {
+    int n = arr.size();
+    bool swapped;
+
+    do {
+        swapped = false;
+
+        for (int i = 1; i < n; ++i) {
+            if (arr[i - 1] > arr[i]) {
+                // Swap arr[i-1] and arr[i]
+                std::swap(arr[i - 1], arr[i]);
+                swapped = true;
+            }
+        }
+
+        // Optimization: After each pass, the largest element is guaranteed
+        // to be at the end of the array, so we can reduce the next pass's
+        // range by one.
+        n--;
+
+    } while (swapped);
+}
+
+int main() {
+    std::vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
+
+    std::cout << "Original array: ";
+    for (int num : arr) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    bubbleSort(arr);
+
+    std::cout << "Sorted array: ";
+    for (int num : arr) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
